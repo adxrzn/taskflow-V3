@@ -1,4 +1,4 @@
-const URL_API = 'http://localhost:3000/api/v1/tasks';
+const URL_API = '/api/v1/tasks';
 
 let historialCalorias = [];
 
