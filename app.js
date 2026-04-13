@@ -57,11 +57,22 @@ function crearTarjetaHTML(registro) {
     `;
 
     tarjeta.querySelector(".btn-borrar").onclick = () => {
-        tarjeta.remove();
-        historialCalorias = historialCalorias.filter(item => item.id !== registro.id);
-        if (historialCalorias.length === 0) seccionExtras.classList.add('hidden');
+        fetch(`${URL_API}/${registro.id}`, {
+            method: 'DELETE'
+        })
+        .then(res => {
+            if (res.ok) {
+                tarjeta.remove();
+                historialCalorias = historialCalorias.filter(item => item.id !== registro.id);
+                if (historialCalorias.length === 0) seccionExtras.classList.add('hidden');
+                console.log("Borrado permanente del servidor OK");
+            } else {
+                alert("No se pudo borrar del servidor.");
+            }
+        })
+        .catch(err => console.error("Error al conectar para borrar:", err));
     };
-
+    
     return tarjeta;
 }
 

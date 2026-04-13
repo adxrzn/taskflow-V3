@@ -25,4 +25,10 @@ app.post('/api/v1/tasks', (req, res) => {
   res.status(201).json(nuevaTarea);
 });
 
+app.delete('/api/v1/tasks/:id', (req, res) => {
+  const { id } = req.params;
+  tasks = tasks.filter(t => t.id !== Number(id));
+  res.status(200).json({ message: "Registro eliminado" });
+});
+
 module.exports = app;
