@@ -1,6 +1,12 @@
 {
-  "version": 2,
   "rewrites": [
-    { "source": "/api/v1/tasks", "destination": "/server/src/app.js" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/[...rutas].js"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
   ]
 }
